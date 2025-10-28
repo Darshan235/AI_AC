@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student Info Portal</title>
+
+    <!-- Added CSS: responsive nav, centered content, footer background -->
+    <style>
+        :root{
+            --max-width: 980px;
+            --accent: #1f6feb;
+            --muted: #6b7280;
+            --footer-bg: #f3f4f6;
+            --gap: 0.75rem;
+        }
+
+        /* Page layout and centered container */
+        body{
+            margin:0;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            color: #111827;
+            line-height:1.4;
+        }
+        .container{
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Header */
+        header{
+            text-align: center;
+            padding: 1.25rem 0;
+        }
+        header h1{ margin:0; font-size:1.5rem; }
+        header p{ margin:0.25rem 0 0; color:var(--muted); }
+
+        /* Navigation: responsive using checkbox toggle (CSS-only) */
+        .nav-wrapper{
+            background: white;
+            border-top: 1px solid #e6eef8;
+            border-bottom: 1px solid #e6eef8;
+        }
+        .nav-container{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            gap: var(--gap);
+            padding: 0.5rem 1rem;
+        }
+
+        /* hidden checkbox to control mobile menu */
+        .nav-toggle{
+            display:none;
+        }
+        .nav-toggle-label{
+            display:none; /* shown on small screens */
+            font-weight:600;
+            color: var(--accent);
+            background: transparent;
+            border: 0;
+            cursor: pointer;
+        }
+
+        .nav-links ul{
+            list-style:none;
+            margin:0;
+            padding:0;
+            display:flex;
+            gap: 0.5rem;
+        }
+        .nav-links a{
+            text-decoration:none;
+            color: var(--accent);
+            padding: 0.4rem 0.6rem;
+            border-radius:6px;
+            display:inline-block;
+        }
+        .nav-links a:hover{ background:#eef6ff; }
+
+        /* Main content centered area */
+        main.main-content{
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            padding: 1.25rem 0;
+        }
+        .content-section{
+            width:100%;
+            max-width:720px;
+            box-sizing:border-box;
+        }
+
+        /* Footer with light gray background */
+        footer{
+            background: var(--footer-bg);
+            color: #374151;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        footer nav ul{
+            display:flex;
+            gap: 0.5rem;
+            justify-content:center;
+            padding:0;
+            margin:0.5rem 0 0;
+            list-style:none;
+        }
+
+        /* Responsive rules */
+        @media (max-width: 700px){
+            .nav-container{ padding:0.5rem; }
+            .nav-toggle-label{ display:inline-block; }
+
+            /* hide links by default on small screens */
+            .nav-links{ display:none; width:100%; }
+            .nav-links ul{ flex-direction: column; gap:0; }
+
+            /* when checkbox is checked, show the links */
+            .nav-toggle:checked + .nav-toggle-label + .nav-links{
+                display:block;
+            }
+
+            .nav-links a{
+                display:block;
+                padding: 0.75rem 1rem;
+                border-top: 1px solid #eef2ff;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with site title and subtitle -->
+    <header role="banner">
+        <h1>Student Info Portal</h1>
+        <p>Access profiles, courses, grades, and campus resources.</p>
+    </header>
+
+    <!-- Primary navigation (updated structure for CSS-only responsive toggle) -->
+    <div class="nav-wrapper" role="navigation" aria-label="Main navigation">
+        <div class="container nav-container">
+            <!-- checkbox + label control mobile menu -->
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+            <label for="nav-toggle" class="nav-toggle-label" aria-hidden="false">Menu</label>
+
+            <!-- site links -->
+            <nav class="nav-links" aria-label="Main links">
+                <ul>
+                    <li><a href="#" aria-current="page">Home</a></li>
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Grades</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main content area (centered) -->
+    <main class="container main-content" role="main">
+
+        <!-- Login form: validated by added JS -->
+        <section class="content-section" aria-labelledby="login-heading">
+            <h2 id="login-heading">Student Login</h2>
+            <!-- Modified: add method and action so the form posts to Flask /login -->
+            <form id="login-form" method="post" action="http://127.0.0.1:5000/login" novalidate>
+                <div>
+                    <label for="username">Username</label><br />
+                    <input id="username" name="username" type="text" autocomplete="username" />
+                    <div id="username-error" role="alert" aria-live="assertive" style="color:#b91c1c; font-size:0.95rem; margin-top:0.25rem;"></div>
+                </div>
+
+                <div style="margin-top:0.5rem;">
+                    <label for="password">Password</label><br />
+                    <input id="password" name="password" type="password" autocomplete="current-password" />
+                    <div id="password-error" role="alert" aria-live="assertive" style="color:#b91c1c; font-size:0.95rem; margin-top:0.25rem;"></div>
+                </div>
+
+                <div style="margin-top:0.75rem;">
+                    <button type="submit">Sign in</button>
+                </div>
+            </form>
+        </section>
+
+        <section class="content-section" aria-labelledby="dashboard-heading">
+            <h2 id="dashboard-heading">Dashboard</h2>
+            <p>Quick links and recent activity will appear here. Use the navigation above to view your profile and courses.</p>
+        </section>
+
+        <section class="content-section" aria-labelledby="announcements-heading">
+            <h3 id="announcements-heading">Announcements</h3>
+            <ul>
+                <li>Semester registration opens on Nov 1.</li>
+                <li>Library hours extended during exams.</li>
+            </ul>
+        </section>
+
+        <section class="content-section" aria-labelledby="quick-links-heading">
+            <h3 id="quick-links-heading">Quick Links</h3>
+            <ul>
+                <li><a href="#">Academic calendar</a></li>
+                <li><a href="#">Support</a></li>
+                <li><a href="#">Campus map</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer with light gray background -->
+    <footer role="contentinfo">
+        <div class="container">
+            <p>&copy; Student Info Portal</p>
+            <nav aria-label="Footer navigation">
+                <ul>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </nav>
+        </div>
+    </footer>
+
+    <!-- Added JS: simple client-side login validation -->
+    <script>
+        // Validate non-empty username and password, show/clear inline errors.
+        document.addEventListener('DOMContentLoaded', function () {
+            var form = document.getElementById('login-form');
+            var username = document.getElementById('username');
+            var password = document.getElementById('password');
+            var userErr = document.getElementById('username-error');
+            var passErr = document.getElementById('password-error');
+
+            // Clear specific error when user types
+            username.addEventListener('input', function () { userErr.textContent = ''; });
+            password.addEventListener('input', function () { passErr.textContent = ''; });
+
+            form.addEventListener('submit', function (e) {
+                var valid = true;
+
+                if (!username.value.trim()) {
+                    userErr.textContent = 'Please enter your username.';
+                    valid = false;
+                } else {
+                    userErr.textContent = '';
+                }
+
+                if (!password.value.trim()) {
+                    passErr.textContent = 'Please enter your password.';
+                    valid = false;
+                } else {
+                    passErr.textContent = '';
+                }
+
+                if (!valid) {
+                    // prevent submit when invalid and focus first invalid field
+                    e.preventDefault();
+                    if (userErr.textContent) username.focus();
+                    else if (passErr.textContent) password.focus();
+                    return;
+                }
+
+                // allow normal submit to POST to /login (do not preventDefault)
+                // Note: server will handle printing the username.
+            });
+        });
+    </script>
+</body>
+</html>
