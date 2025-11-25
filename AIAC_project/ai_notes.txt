@@ -1,0 +1,26 @@
+# AI Notes — How AI Helped Build This Frontend
+
+I used AI (VSC GitHub copilot) to create the frontend part of this invoice generator project.  
+Here is how AI assisted:
+
+1. Planning the UI
+   - AI suggested a minimal interface requiring only one input: customer name.
+   - It also proposed features like copy button, new invoice button, and history.
+
+2. Designing the Invoice Format
+   - AI helped design a simple algorithm:
+     - Extract initials → prefix
+     - Add timestamp → uniqueness over time
+     - Add 4‑character random string → avoid collisions
+
+3. Writing the Code
+   - AI generated:
+     - `index.html` layout
+     - Clean, modern CSS
+     - JavaScript for invoice logic, timestamp creation, prefix extraction, randomness, and UI behavior
+
+4. File Packaging
+   - AI automated file generation and zipped the entire project structure.
+
+AI was mainly used to quickly produce clean code and structure the project efficiently, saving development time.
+

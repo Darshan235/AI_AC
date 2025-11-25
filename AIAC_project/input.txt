@@ -1,0 +1,11 @@
+Sample Input:
+Customer Name: Rahul Sharma
+Customer Name: Priya Ramesh
+Customer Name: Karthik Menon
+Customer Name: Sneha Patil
+Customer Name: Aarav Shah
+Customer Name: Meera Nair
+Customer Name: Tanvi Kulkarni
+Customer Name: Arjun Verma
+Customer Name: Riya Das
+Customer Name: Vivek Rao

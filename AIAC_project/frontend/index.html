@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Invoice Generator — Enter Customer Name</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="card container">
+    <h1>Invoice Number Generator</h1>
+    <p class="muted">Enter customer name and get a unique invoice number.</p>
+
+    <form id="form">
+      <label for="cust">Customer name</label>
+      <input id="cust" name="cust" placeholder="e.g. Rahul Sharma" autocomplete="off" required />
+      <button id="gen" type="submit">Generate Invoice</button>
+    </form>
+
+    <div class="result" id="result" aria-live="polite" hidden>
+      <label>Invoice for <span id="rname"></span></label>
+      <textarea id="invoice" rows="2" readonly></textarea>
+      <div class="actions">
+        <button id="copy">Copy</button>
+        <button id="new">Generate New</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
